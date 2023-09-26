@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@lndgalante/solutils": "^0.6.0",
+    "@nextui-org/react": "^2.1.13",
     "@solana/spl-token": "^0.3.8",
     "@solana/wallet-adapter-base": "^0.9.23",
     "@solana/wallet-adapter-react": "^0.15.34",
@@ -17,8 +21,10 @@
     "@solana/wallet-adapter-wallets": "^0.19.20",
     "@solana/web3.js": "^1.78.4",
     "autoprefixer": "10.4.15",
+    "axios": "^1.5.0",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "framer-motion": "^10.16.4",
     "next": "13.4.19",
     "postcss": "8.4.28",
     "react": "^18.2.0",

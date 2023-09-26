@@ -2,9 +2,10 @@ import { Inter } from 'next/font/google'
 import { useWalletTokenBalance } from '@lndgalante/solutils';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic.js'
 import Button from '@/components/Button'
 import Link from 'next/link';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,8 +37,9 @@ function Home() {
 
       <div className="relative flex flex-col justify-between place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
         <h1 className='font-bold'>This is a boilerplate for the APUBCC Sparkathon 2022</h1>
-        <button><a href='homepage.js'>homepage</a></button>
-        <Link href="homepage.js">Back to home</Link>
+        <Link href="/homepage">
+          Go to Homepage
+        </Link>
         
           {/* if publicKey found, display button */}
           {publicKey ? <div className='place-items-center grid mt-10'>

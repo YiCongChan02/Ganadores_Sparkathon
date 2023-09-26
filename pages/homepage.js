@@ -1,70 +1,160 @@
-// Get the top 100 cryptocurrencies from CoinMarketCap
-const top100Cryptocurrencies = await fetch("https://api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=100")
-  .then(response => response.json())
-  .then(json => json.data);
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// Create the table element
-const table = document.createElement("table");
-table.classList.add("crypto-table");
+// Import the Button component
+import { Button } from '@nextui-org/react';
 
-// Create the table header row
-const tableHeaderRow = document.createElement("tr");
-const rankHeaderCell = document.createElement("th");
-rankHeaderCell.textContent = "Rank";
-tableHeaderRow.appendChild(rankHeaderCell);
+function Homepage() {
+  const [cryptoData, setCryptoData] = useState([]);
+  const [page, setPage] = useState(1);
 
-const nameHeaderCell = document.createElement("th");
-nameHeaderCell.textContent = "Name";
-tableHeaderRow.appendChild(nameHeaderCell);
+  // Define a function to fetch data from the CoinGecko API for the specified page
+  const fetchCryptoData = async (pageNumber) => {
+    try {
+      const response = await axios.get(
+        'https://api.coingecko.com/api/v3/coins/markets',
+        {
+          params: {
+            vs_currency: 'usd',
+            order: 'market_cap_desc',
+            per_page: 10,
+            page: pageNumber, // Use the specified page number
+            sparkline: false,
+          },
+        }
+      );
 
-const symbolHeaderCell = document.createElement("th");
-symbolHeaderCell.textContent = "Symbol";
-tableHeaderRow.appendChild(symbolHeaderCell);
+      setCryptoData(response.data);
+    } catch (error) {
+      console.error('Error fetching data from CoinGecko:', error);
+    }
+  };
 
-const priceHeaderCell = document.createElement("th");
-priceHeaderCell.textContent = "Price";
-tableHeaderRow.appendChild(priceHeaderCell);
+  // Fetch data when the component mounts and whenever the page changes
+  useEffect(() => {
+    fetchCryptoData(page);
+  }, [page]);
 
-const marketCapHeaderCell = document.createElement("th");
-marketCapHeaderCell.textContent = "Market Cap";
-tableHeaderRow.appendChild(marketCapHeaderCell);
+  const nextPage = () => {
+    // Increment the page number to load the next page of data
+    setPage(page + 1);
+  };
 
-const volumeHeaderCell = document.createElement("th");
-volumeHeaderCell.textContent = "Volume";
-tableHeaderCell.appendChild(volumeHeaderCell);
+  const prevPage = () => {
+    // Decrement the page number to load the previous page of data, but don't go below page 1
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
 
-table.appendChild(tableHeaderRow);
+  return (
+    <div style={{ padding: '0 10%', textAlign: 'center' }}>
+      {/* Add the login button at the top right */}
+      <Button
+        className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+        style={{
+          position: 'absolute',
+          top: '30px',
+          right: '180px',
+          width: '120px',
+          height: '42px',
+          fontSize: '18px',
+          borderRadius: '50px'
+        }}
+      >
+        Login
+      </Button>
 
-// Create the table body rows
-top100Cryptocurrencies.forEach(cryptocurrency => {
-  const tableRow = document.createElement("tr");
+      <h1 style={{ fontSize: '32px', textAlign: 'left', marginTop: '20px' }}>
+        Cryptocurrency Prices by Market Cap
+      </h1>
+      <h5 style={{ fontSize: '24px', marginBottom: '20px', textAlign: 'left', marginTop: '10px' }}>
+        Ganadores Sparkathon
+      </h5>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th style={{ textAlign: 'left' }}>#</th>
+            <th style={{ textAlign: 'left' }}>Coin</th>
+            <th style={{ textAlign: 'left' }}>Price (USD)</th>
+            <th style={{ textAlign: 'left' }}>Volume</th>
+            <th style={{ textAlign: 'left' }}>MarketCap</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cryptoData.map((crypto, index) => (
+            <tr
+              key={crypto.id}
+              style={{
+                borderBottom: '1px solid #ddd',
+              }}
+            >
+              <td style={{textAlign: 'left'}}>{index + 1}</td>
+              <td style={{ textAlign: 'left', display: 'flex', alignItems: 'center' }}>
+                <img
+                  src={crypto.image}
+                  alt={crypto.name}
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    marginRight: '5px',
+                    marginTop: '20px',
+                    marginBottom: '20px',
+                  }}
+                />
+                <span style={{ fontSize: '16px' }}>
+                  {crypto.name}{' '}
+                  <span
+                    style={{
+                      fontSize: '12px',
+                      color: '#777',
+                    }}
+                  >
+                    ({crypto.symbol})
+                  </span>
+                </span>
+              </td>
+              <td style={{textAlign: 'left'}}>${crypto.current_price.toFixed(2)}</td>
+              <td style={{textAlign: 'left'}}>${crypto.total_volume.toLocaleString()}</td>
+              <td style={{textAlign: 'left'}}>${crypto.market_cap.toLocaleString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-  const rankCell = document.createElement("td");
-  rankCell.textContent = cryptocurrency.cmc_rank;
-  tableRow.appendChild(rankCell);
+      {/* Previous Page Button */}
+      <Button
+        className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+        style={{
+          width: '42px',
+          height: '42px',
+          fontSize: '24px',
+          borderRadius: '50%',
+          marginTop: '20px',
+          marginRight: '20px',
+        }}
+        onClick={prevPage}
+        disabled={page === 1} // Disable the button on the first page
+      >
+        {"<"}
+      </Button>
 
-  const nameCell = document.createElement("td");
-  nameCell.textContent = cryptocurrency.name;
-  tableRow.appendChild(nameCell);
+      {/* Next Page Button */}
+      <Button
+        className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+        style={{
+          width: '42px',
+          height: '42px',
+          fontSize: '24px',
+          borderRadius: '50%',
+          marginTop: '20px',
+        }}
+        onClick={nextPage}
+      >
+        {">"}
+      </Button>
+    </div>
+  );
+}
 
-  const symbolCell = document.createElement("td");
-  symbolCell.textContent = cryptocurrency.symbol;
-  tableRow.appendChild(symbolCell);
-
-  const priceCell = document.createElement("td");
-  priceCell.textContent = cryptocurrency.quote.USD.price;
-  tableRow.appendChild(priceCell);
-
-  const marketCapCell = document.createElement("td");
-  marketCapCell.textContent = cryptocurrency.quote.USD.market_cap;
-  tableRow.appendChild(marketCapCell);
-
-  const volumeCell = document.createElement("td");
-  volumeCell.textContent = cryptocurrency.quote.USD.volume_24h;
-  tableRow.appendChild(volumeCell);
-
-  table.appendChild(tableRow);
-});
-
-// Append the table to the page
-document.body.appendChild(table);
+export default Homepage;
