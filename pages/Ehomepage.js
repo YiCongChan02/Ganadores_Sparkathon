@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 // Import the necessary components
-import { Button, Dropdown, DropdownItem } from '@nextui-org/react';
+import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
 
 function SecondHomepage() {
   const [exchangeData, setExchangeData] = useState([]);
   const [page, setPage] = useState(1);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   // Define a function to fetch data from the CoinGecko API for the specified page
   const fetchExchangeData = async (pageNumber) => {
@@ -47,27 +48,28 @@ function SecondHomepage() {
   return (
     <div style={{ padding: '0 10%', textAlign: 'center' }}>
       {/* Binance Dropdown */}
-      <Dropdown
-        overlay={
+      <Dropdown active={showDropdown} onToggle={() => setShowDropdown(!showDropdown)}>
+        <DropdownTrigger>
+          <Button
+            className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+            style={{
+              position:'absolute',
+              top:'30px',
+              right: '180px',
+              width: '120px',
+              height: '42px',
+              fontSize: '18px',
+              borderRadius: '50px',
+            }}
+          >
+            Binance
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu>
           <DropdownItem onClick={() => console.log('My Audit clicked')}>
             My Audit
           </DropdownItem>
-        }
-      >
-        <Button
-          className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-          style={{
-            position:'absolute',
-            top:'30px',
-            right: '180px',
-            width: '120px',
-            height: '42px',
-            fontSize: '18px',
-            borderRadius: '50px',
-          }}
-        >
-          Binance
-        </Button>
+        </DropdownMenu>
       </Dropdown>
 
       <h1 style={{ fontSize: '32px', textAlign: 'left', marginTop: '20px' }}>
