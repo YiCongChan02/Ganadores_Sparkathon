@@ -69,11 +69,17 @@ function Detail() {
       console.error('Error fetching volume chart data:', error);
     }
   };
-  
-  const fetchExchangeCoins = async () => {
+
+  const fetchExchangeCoins = async (pageNumber) => {
     try {
       const response = await axios.get(
-        `https://api.coingecko.com/api/v3/exchanges/${id}/tickers`
+        `https://api.coingecko.com/api/v3/exchanges/${id}/tickers`, 
+        {
+            params: {
+              per_page: 10,
+              page: pageNumber, // Use the specified page number
+            },
+          }
       );
 
       // Extract the list of coins from the response
@@ -100,9 +106,21 @@ function Detail() {
     if (id) {
       fetchExchangeDetail();
       fetchVolumeChart();
-      fetchExchangeCoins();
+      fetchExchangeCoins(page);
     }
-  }, [id]);
+  }, [id, page]);
+
+  const nextPage = () => {
+    // Increment the page number to load the next page of data
+    setPage(page + 1);
+  };
+
+  const prevPage = () => {
+    // Decrement the page number to load the previous page of data, but don't go below page 1
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
 
   // Render loading state if data is being fetched
   if (!exchangeDetail || volumeChart.length === 0) {
@@ -227,42 +245,42 @@ function Detail() {
 
 
     <div style={{ padding: '0 10%', textAlign: 'left' }}>
-      <h1 style={{ fontSize: '32px', marginTop: '15px' }}>Exchange Detail Page</h1>
+      <h1 style={{ fontSize: '32px', marginTop: '20px' }}>Exchange Detail Page</h1>
 
-      <div style={{ display: 'flex', alignItems: 'flex-end', marginTop:'20px' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', marginTop:'20px', marginLeft:'120px' }}>
         {/* Left side div with logo and name */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
-          <img src={exchangeDetail.image} alt={exchangeDetail.name} style={{ width: '200px', height: '200px' }} />
+          <img src={exchangeDetail.image} alt={exchangeDetail.name} style={{ width: '140px', height: '140px' }} />
           <h2 style={{ fontSize: '28px', marginBottom: '15px' }}>{exchangeDetail.name}</h2>
         </div>
 
         <div style={{ marginLeft: '200px' }}>
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '22px' }}>24h  Volume: </p>
-          <p style={{ color: 'black', fontSize: '25px', marginBottom: '15px' }}>{exchangeDetail.trade_volume_24h_btc_normalized}</p>
+          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>24h  Volume: </p>
+          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}>{exchangeDetail.trade_volume_24h_btc_normalized}</p>
           
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '22px' }}>Monthly Visit: </p>
-          <p style={{ color: 'black', fontSize: '25px', marginBottom: '15px' }}>{exchangeDetail.trade_volume_24h_btc}</p>
+          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Monthly Visit: </p>
+          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}>{exchangeDetail.trade_volume_24h_btc}</p>
           
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '22px' }}>Trust Score: </p>
-          <p style={{ color: 'black', fontSize: '25px', marginBottom: '15px' }}>{exchangeDetail.trust_score}</p>
+          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Trust Score: </p>
+          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}>{exchangeDetail.trust_score}</p>
 
         </div>
 
         <div style={{ marginLeft: '150px' }}>
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '22px' }}>Country: </p>
-          <p style={{ color: 'black', fontSize: '25px', marginBottom: '15px' }}>{exchangeDetail.country}</p>
+          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Country: </p>
+          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}>{exchangeDetail.country}</p>
           
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '22px' }}>Monthly Visit: </p>
-          <p style={{ color: 'black', fontSize: '25px', marginBottom: '15px' }}>{exchangeDetail.trade_volume_24h_btc}</p>
+          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Monthly Visit: </p>
+          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}>{exchangeDetail.trade_volume_24h_btc}</p>
           
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '22px' }}>Year Established: </p>
-          <p style={{ color: 'black', fontSize: '25px', marginBottom: '15px' }}>{exchangeDetail.year_established}</p>
+          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Year Established: </p>
+          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}>{exchangeDetail.year_established}</p>
 
         </div>
 
         <div style={{ marginLeft: '150px' }}>
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '22px' }}>Website: </p>
-          <p style={{ color: 'black', fontSize: '25px', marginBottom: '15px' }}><a href={exchangeDetail.url} target="_blank" rel="noopener noreferrer">{exchangeDetail.url}</a></p>
+          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Website: </p>
+          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}><a href={exchangeDetail.url} target="_blank" rel="noopener noreferrer">{exchangeDetail.url}</a></p>
         </div>
       </div>
 
@@ -286,7 +304,7 @@ function Detail() {
             </tr>
           </thead>
           <tbody>
-            {exchangeCoins.map((coin, index) => (
+            {exchangeCoins.slice(0,10).map((coin, index) => (
                 
               <tr key={coin}>
                 <td style={{ textAlign: 'left' }}>{index + 1}</td>
@@ -303,11 +321,49 @@ function Detail() {
                         "Verified"
                     ) : null}
                 </td>
-
               </tr>
             ))}
           </tbody>
         </table>
+        
+        <div style={{ marginTop: 'auto', textAlign: 'right', padding: '20px 0' }}>
+      {/* Previous Page Button */}
+      <Button
+        className="bg-gradient-to-tr from-purple-400 to-512DA8 text-white shadow-lg"
+        style={{
+          width: '42px',
+          height: '42px',
+          fontSize: '24px',
+          borderRadius: '50%',
+          marginRight: '10px', // spacing between the buttons
+          padding: '2px',
+          background: 'linear-gradient(to right, #9c4dcc, #6a1b9a)', // Gradient stroke
+          boxShadow: '0 0 10px 2px rgba(129, 81, 168, 0.3)' // Subtle glow effect
+        }}
+        onClick={prevPage}
+        disabled={page === 1} // Disable the button on the first page
+      >
+        {"<"}
+      </Button>
+
+      {/* Next Page Button */}
+      <Button
+        className="bg-gradient-to-tr from-purple-400 to-512DA8 text-white shadow-lg"
+        style={{
+          width: '42px',
+          height: '42px',
+          fontSize: '24px',
+          borderRadius: '50%',
+          padding: '2px',
+          background: 'linear-gradient(to right, #9c4dcc, #6a1b9a)', // Gradient stroke
+          boxShadow: '0 0 10px 2px rgba(129, 81, 168, 0.3)' // Subtle glow effect
+        }}
+        onClick={nextPage}
+      >
+        {">"}
+      </Button>
+    </div>
+
       </div>
     </div>
     </div>
