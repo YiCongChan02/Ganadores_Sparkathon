@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link'; // Import Link from Next.js
 
 // Import the necessary components
 import { Button } from '@nextui-org/react';
@@ -87,18 +88,21 @@ function Homepage() {
             >
               <td style={{ textAlign: 'left' }}>{index + 1}</td>
               <td style={{ textAlign: 'left', display: 'flex', alignItems: 'center' }}>
-                <img
-                  src={exchange.image}
-                  alt={exchange.name}
-                  style={{
-                    width: '24px',
-                    height: '24px',
-                    marginRight: '5px',
-                    marginTop: '20px',
-                    marginBottom: '20px',
-                  }}
-                />
-                <span style={{ fontSize: '16px' }}>{exchange.name}</span>
+                <Link style={{alignItems: 'center', display:'flex'}} href={`/detail/${exchange.id}`}>
+                  {/* Use Link to navigate to detail page */}
+                    <img
+                      src={exchange.image}
+                      alt={exchange.name}
+                      style={{
+                        width: '24px',
+                        height: '24px',
+                        marginRight: '5px',
+                        marginTop: '20px',
+                        marginBottom: '20px',
+                      }}
+                    />
+                    <span style={{ fontSize: '16px' }}>{exchange.name}</span>
+                </Link>
               </td>
               <td style={{ textAlign: 'left' }}>{exchange.trust_score}</td>
               <td style={{ textAlign: 'left' }}>{exchange.trade_volume_24h_btc_normalized}</td>
@@ -140,6 +144,7 @@ function Homepage() {
       >
         {">"}
       </Button>
+      <br></br><br></br><br></br><br></br><br></br>
     </div>
   );
 }
