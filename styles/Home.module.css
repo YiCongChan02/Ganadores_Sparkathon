@@ -1,0 +1,35 @@
+/* Home.module.css */
+
+.auditButtonAnimation {
+  animation: glowing 3s infinite, movingGradient 3s infinite;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px 1px rgba(186, 104, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px 3px rgba(186, 104, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px 1px rgba(186, 104, 255, 0.3);
+  }
+}
+
+@keyframes movingGradient {
+  0% {
+    border-image-source: linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff);
+  }
+  25% {
+    border-image-source: linear-gradient(45deg, #b388ff, #d8b4fe, #ffffff);
+  }
+  50% {
+    border-image-source: linear-gradient(45deg, #ffffff, #b388ff, #d8b4fe);
+  }
+  75% {
+    border-image-source: linear-gradient(45deg, #b388ff, #d8b4fe, #ffffff);
+  }
+  100% {
+    border-image-source: linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff);
+  }
+}

@@ -14,10 +14,13 @@
 @media (prefers-color-scheme: light) {
   :root {
     --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
+    /* --background-start-rgb: 214, 219, 220; */
+    --background-start-rgb: 255, 255, 255; /* Set to white */
     --background-end-rgb: 255, 255, 255;
     --gradient-start: #ffffff; /* White */
-    --gradient-end: #e6e6e6; /* Light gray */
+    --gradient-end: #ffffff;   /* Set to white */
+    /* --gradient-end: #e6e6e6;  */
+    /* Light gray */
   }
 }
 
@@ -31,3 +34,5 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
