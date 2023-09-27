@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { useWalletTokenBalance } from '@lndgalante/solutils';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic.js'
+import Link from 'next/link';
+import styles from '../../styles/Home.module.css';
+import { Button } from '@nextui-org/react';
 
 function Detail() {
+  const { publicKey } = useWallet();
+  const { connection } = useConnection();
+ 
+  // solutils hooks
+  const { getWalletTokenBalance, result, status, error } = useWalletTokenBalance(publicKey, connection);
+  
+  const [exchangeData, setExchangeData] = useState([]);
+  const [page, setPage] = useState(1);
+
+
   const router = useRouter();
   const { id } = router.query; // Get the exchange ID from the URL
 
@@ -97,6 +114,118 @@ function Detail() {
   }
 
   return (
+    <div style={{ padding: '0 0%', textAlign: 'center' }}>
+      <div 
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '20px 6%', // Increased padding for thickness
+          width: '100%',
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Shadow under the navbar
+          marginBottom: '20px'
+        }}
+      >
+        <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
+          Ganaudit
+        </h1>
+        {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ? 
+        <a style={{
+            fontSize: '18px',
+            fontWeight: 'bold',
+            position: 'absolute',
+            right: '27%',
+            // marginTop: '10px',
+            color: 'transparent',
+            background: 'linear-gradient(to right, #9c4dcc, #6a1b9a)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text'
+        }}>
+            Welcome, sparkathance 
+            <span style={{
+                marginLeft: '5px',
+                padding: '1px 3px',
+                // backgroundColor: 'white',
+                // border: '2px solid transparent',
+                // backgroundClip: 'padding-box, border-box',
+                // backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #9c4dcc, #6a1b9a, #b388ff)', // Darker gradient colors
+                // borderRadius: '5px',
+                // color: 'transparent',
+                // backgroundClip: 'text',
+                // WebkitBackgroundClip: 'text',
+                borderRadius: '6px',
+                background: 'transparent',
+                // borderImageSlice: 1,
+                // borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                fontWeight: '600',
+                borderColor: '#b388ff',
+                fontSize: '12px'  // Set the font size here
+            }}>
+                ✓
+            </span>
+            <span style={{
+                marginLeft: '5px',
+                padding: '2px 10px',
+                backgroundColor: 'white',
+                border: '2px solid grey',
+                borderRadius: '6px',
+                color: 'grey',
+                fontSize: '12px'  // Set the font size here
+            }}>
+                Not Audited
+            </span>
+        </a>
+        : null}
+
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {/* 53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR */}
+          {/* if publicKey found, display button */}
+          {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ? 
+          <Button
+          className={styles.auditButtonAnimation}
+          style={{
+            marginRight: '20px',
+            padding: '9px 18px',
+            // borderRadius: '50px',
+            background: 'transparent',
+            borderImageSlice: 1,
+            borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+            borderWidth: '3px',
+            borderStyle: 'solid',
+            fontWeight: '600'
+          }}
+        >
+          My Audit
+        </Button>
+         : null}
+          
+          {/* Wallet Button */}
+          <div 
+            style={{
+              display: 'inline-flex',
+              padding: '2px',
+              background: 'linear-gradient(to right, #d8b4fe, #b388ff)',
+              borderRadius: '52px',
+              boxShadow: '0 0 10px 2px rgba(186, 104, 255, 0.3)'
+            }}
+          >
+            <WalletMultiButton 
+              style={{
+                margin: '0',
+                borderRadius: '50px',
+                minWidth: '120px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+
     <div style={{ padding: '0 10%', textAlign: 'left' }}>
       <h1 style={{ fontSize: '32px', marginTop: '15px' }}>Exchange Detail Page</h1>
 
@@ -180,6 +309,7 @@ function Detail() {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 }
