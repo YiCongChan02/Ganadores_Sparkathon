@@ -46,6 +46,7 @@ function Auditor() {
 
   return (
     <div style={auditorContainerStyle}>
+        
       {/* Left Bar */}
       <div style={leftBarStyle}>
         {/* Add left sidebar content here */}

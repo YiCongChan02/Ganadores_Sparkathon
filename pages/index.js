@@ -60,7 +60,20 @@ function Home() {
   return (
     
     <div style={{ padding: '0 0%', textAlign: 'center' }}>
-      
+      <iframe
+        src='https://my.spline.design/animatedhaxcle-d4048ad00db0c59bf783555e6aad2b2c/'
+        frameborder='0'
+        width='100%'
+        height='100%'
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          zIndex: '-1',
+        }}
+      ></iframe>
       <div 
         style={{
           display: 'flex',
@@ -69,7 +82,8 @@ function Home() {
           padding: '20px 6%', // Increased padding for thickness
           width: '100%',
           boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Shadow under the navbar
-          marginBottom: '20px'
+          marginBottom: '20px',
+          backgroundColor:'white'
         }}
       >
         <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
