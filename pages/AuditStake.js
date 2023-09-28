@@ -60,7 +60,7 @@ function AuditorView() {
         <div style={topHeaderStyle}>
           {/* Menu Icon */}
           <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
-          Ganaudit
+          Decentraudit
         </h1>
         <div>
         <Link href="/"> {/* Replace '/stake' with the actual URL you want to navigate to */}

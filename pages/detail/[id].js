@@ -160,7 +160,7 @@ function Detail() {
         }}
       >
         <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
-          Ganaudit
+        Decentraudit
         </h1>
         {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ? 
         <a style={{

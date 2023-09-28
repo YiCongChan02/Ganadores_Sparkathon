@@ -73,7 +73,7 @@ function Home() {
         }}
       >
         <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
-          Ganaudit
+        Decentraudit
         </h1>
         {/* {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ?  */}
         {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? 
