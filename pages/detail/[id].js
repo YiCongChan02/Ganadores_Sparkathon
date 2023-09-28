@@ -335,7 +335,7 @@ function Detail() {
                 <td style={{ textAlign: 'left' }}>{price[index]}</td>
                 <td style={{ textAlign: 'left' }}>{spread[index]}</td>
                 <td style={{ textAlign: 'left' }}>{volume[index]}</td>
-                <td style={{ textAlign: 'left' , marginBottom: '20px',display:'block'}}>
+                <td style={{ textAlign: 'left' , marginTop: '10px',display:'block', marginBottom: '10px'}}>
                     {trust[index] === "green" ? (
                         "Verified"
                     ) : null}

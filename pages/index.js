@@ -75,7 +75,8 @@ function Home() {
         <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
           Ganaudit
         </h1>
-        {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ? 
+        {/* {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ?  */}
+        {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? 
         <a style={{
             fontSize: '18px',
             fontWeight: 'bold',
@@ -128,7 +129,7 @@ function Home() {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {/* 53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR */}
           {/* if publicKey found, display button */}
-          {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ? 
+          {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? 
           <Button
           className={styles.auditButtonAnimation}
           style={{
@@ -255,6 +256,10 @@ function Home() {
         onClick={nextPage}
       >
         {">"}
+      </Button>
+        <br></br>
+      <Button>
+        <a href='/AuditSite'>Audit Site Temp Path</a>
       </Button>
     </div>
 
