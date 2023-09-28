@@ -111,16 +111,31 @@ function Detail() {
   }, [id, page]);
 
   const nextPage = () => {
+    // Clear the arrays
+    setExchangeCoins([]);
+    setPrice([]);
+    setSpread([]);
+    setVolume([]);
+    setTrust([]);
+  
     // Increment the page number to load the next page of data
     setPage(page + 1);
   };
-
+  
   const prevPage = () => {
+    // Clear the arrays
+    setExchangeCoins([]);
+    setPrice([]);
+    setSpread([]);
+    setVolume([]);
+    setTrust([]);
+  
     // Decrement the page number to load the previous page of data, but don't go below page 1
     if (page > 1) {
       setPage(page - 1);
     }
   };
+  
 
   // Render loading state if data is being fetched
   if (!exchangeDetail || volumeChart.length === 0) {
@@ -291,7 +306,7 @@ function Detail() {
       {/* List of coins supported by the exchange */}
       <div style={{ padding: '0 10%', textAlign: 'center', marginTop:'20px' }}>
         {/* <h2>Coins Supported by {exchangeDetail.name}</h2> */}
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse',borderSpacing: '0 20px', }}>
           <thead>
             <tr style={{fontSize:'20px'}}>
               <th style={{ textAlign: 'left' }}>#</th>
@@ -306,17 +321,21 @@ function Detail() {
           <tbody>
             {exchangeCoins.slice(0,10).map((coin, index) => (
                 
-              <tr key={coin}>
+              <tr 
+                key={coin}
+                style={{
+                    borderBottom: '1px solid #ddd'
+                }}>
+                
                 <td style={{ textAlign: 'left' }}>{index + 1}</td>
                 <td style={{ textAlign: 'left' }}>
-                  
                   {coin}
                 </td>
                 <td style={{ textAlign: 'left' }}>{`${coin}/USDT`}</td>
                 <td style={{ textAlign: 'left' }}>{price[index]}</td>
                 <td style={{ textAlign: 'left' }}>{spread[index]}</td>
                 <td style={{ textAlign: 'left' }}>{volume[index]}</td>
-                <td style={{ textAlign: 'left' }}>
+                <td style={{ textAlign: 'left' , marginBottom: '20px',display:'block'}}>
                     {trust[index] === "green" ? (
                         "Verified"
                     ) : null}
