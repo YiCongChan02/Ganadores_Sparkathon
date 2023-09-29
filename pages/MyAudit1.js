@@ -10,13 +10,13 @@ function MyAudit1() {
   // Sample audit data (replace this with your actual audit data)
   const auditData = [
     {
-      date: '2023-09-30',
+      date: '2021-09-30',
       complianceScore: 95,
       documents: '5 documents submitted',
       status: 'Done'
     },
     {
-      date: '2023-09-25',
+      date: '2022-09-25',
       complianceScore: 85,
       documents: '5 documents submitted',
       status: 'Done'
@@ -62,7 +62,7 @@ function MyAudit1() {
           width: '100%',
           height: '100%',
           zIndex: '-1',
-          opacity:'60%'
+          opacity:'30%'
         }}
       ></iframe>
       <div

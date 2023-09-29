@@ -92,7 +92,7 @@ function Home() {
           width: '100%',
           height: '100%',
           zIndex: '-1',
-          opacity:'60%'
+          opacity:'30%'
         }}
       ></iframe>
       <div 

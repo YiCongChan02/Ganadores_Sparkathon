@@ -10,7 +10,22 @@ function MyAuditDetails() {
   const { publicKey } = useWallet();
 
   return (
-    <div style={{ padding: '0 0%', textAlign: 'center' ,backgroundColor:'#f4f0ec '}}>
+    <div style={{ padding: '0 0%', textAlign: 'center' }}>
+        <iframe
+        src='https://my.spline.design/animatedhaxcle-d4048ad00db0c59bf783555e6aad2b2c/'
+        frameborder='0'
+        width='100%'
+        height='100%'
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          zIndex: '-1',
+          opacity:'30%'
+        }}
+      ></iframe>
       <div
         style={{
           display: 'flex',
@@ -20,7 +35,7 @@ function MyAuditDetails() {
           width: '100%',
           boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Shadow under the navbar
           marginBottom: '20px',
-          backgroundColor: 'white',
+          backgroundColor:'white'
         }}
       >
         <Link href="/">
@@ -257,9 +272,9 @@ function MyAuditDetails() {
                 {/* Add more rows if needed */}
                 </tbody>
             </table>
-            <div style={{ display: 'flex' , padding: '0 0%', textAlign: 'left', marginLeft:'20px'}}>
+            <div style={{ display: 'flex' , padding: '0 0%', textAlign: 'left', marginLeft:'350px'}}>
                 <div style={{ padding: '20px' }}>
-                    <h1 style={{fontSize: '38px', fontWeight: '610', marginTop:'70px'}}>
+                    <h1 style={{fontSize: '38px', fontWeight: '610', marginTop:'70px', color:'#69359c '}}>
                     <a href="https://www.sec.gov/Archives/edgar/data/1824301/000121390021036070/ea143875ex99-6_concordacq.htm#fin_002" rel="noopener noreferrer">
                         Full Report <i className="fa fa-arrow-circle-o-right"></i>
                         </a>

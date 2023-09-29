@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css';
 import dynamic from 'next/dynamic.js'
 import Link from 'next/link';
 import 'animate.css';
-function MyAudit0() {
+function submission1() {
   const { publicKey } = useWallet();
 
   return (
@@ -127,43 +127,131 @@ function MyAudit0() {
           </div>
         </div>
       </div>
-      {/* Button to navigate to the submission page */}
+      
       <div 
         style={{
             marginTop:'300px'
         }}>
             <p style={{ fontSize: '48px', fontWeight: '500' }}>
-                You don't have any audit history. <br></br>
-                Redefine your user trusts by start auditing.
+                Select your company size.
+            </p>
+            <p style={{ fontSize: '24px', fontWeight: '300', marginTop:'50px' }}>
+                Based on market capitalization
             </p>
         </div>
-      <div style={{ marginTop: '120px' }}>
+
+        <div style={{ marginTop: '80px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Link href="/submission2" style={{  marginLeft:'350px' }}>
+          <Button
+            className={styles.auditButtonAnimation}
+            style={{
+              padding: '9px 18px',
+              background: 'white',
+              borderImageSlice: 1,
+              borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+              borderWidth: '3px',
+              borderStyle: 'solid',
+              fontWeight: '700',
+              width: '300px',
+              height: '100px',
+              fontSize: '30px',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '20px', // Add margin-bottom for spacing
+              display: 'flex', // Add display:flex to make it a flex container
+              flexDirection: 'column', // Stack the content vertically
+              textAlign: 'center', // Center text horizontally
+            }}
+          >
+            <div>
+              Small
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '300'}}>
+              Trading volume &lt; $10 million/day.
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '300' }}>
+              Market capitalization &lt; $100 million.
+            </div>
+          </Button>
+            
+        </Link>
+
+        <Link href="/submission2" style={{ display: 'flex' }}>
+          <Button
+            className={styles.auditButtonAnimation}
+            style={{
+              padding: '9px 18px',
+              background: 'white',
+              borderImageSlice: 1,
+              borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+              borderWidth: '3px',
+              borderStyle: 'solid',
+              fontWeight: '700',
+              width: '300px',
+              height: '100px',
+              fontSize: '30px',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '20px', // Add margin-bottom for spacing
+              display: 'flex', // Add display:flex to make it a flex container
+              flexDirection: 'column', // Stack the content vertically
+              textAlign: 'center', // Center text horizontally
+              
+            }}
+          >
           
+            <div>
+              Medium
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '300'}}>
+              Trading volume &lt; $100 million/day.
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '300' }}>
+              Market capitalization &lt; $1 billion.
+            </div>
+          </Button>
+        </Link>
 
-          <Link href="/submission1"> {/* Replace with the actual path to your submission page */}
+        <Link href="/submission2" style={{ marginRight:'350px'}}>
+          <Button
+            className={styles.auditButtonAnimation}
+            style={{
+              padding: '9px 18px',
+              background: 'white',
+              borderImageSlice: 1,
+              borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+              borderWidth: '3px',
+              borderStyle: 'solid',
+              fontWeight: '700',
+              width: '300px',
+              height: '100px',
+              fontSize: '30px',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '20px', // Add margin-bottom for spacing
+              display: 'flex', // Add display:flex to make it a flex container
+              flexDirection: 'column', // Stack the content vertically
+              textAlign: 'center', // Center text horizontally
+            }}
+          >
+            <div>
+              Large
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '300'}}>
+              Trading volume &gt; $100 million/day.
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '300' }}>
+              Market capitalization &gt; $1 billion.
+            </div>
+          </Button>
+        </Link>
+      </div>
+      
 
-              <Button className={styles.auditButtonAnimation}
-                style={{
-                  padding: '9px 18px',
-                  background: 'white',
-                  borderImageSlice: 1,
-                  borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
-                  borderWidth: '3px',
-                  borderStyle: 'solid',
-                  fontWeight: '700',
-                  width:'300px',
-                  height:'100px',
-                  fontSize:'30px',
-                  justifyContent:'center',
-                  padding:'25px'
-                }}
-              >
-                Get Started
-              </Button>
-          </Link>
-        </div>
+
     </div>
+    
   );
 }
 
-export default MyAudit0;
+export default submission1;
