@@ -1,17 +1,69 @@
-import React from 'react';
-import { Button } from '@nextui-org/react'; // Make sure to import any necessary components
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { useWalletTokenBalance } from '@lndgalante/solutils';
+import React, { useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import styles from '../styles/Home.module.css';
-import dynamic from 'next/dynamic.js'
-import Link from 'next/link';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+
 function MyAudit1() {
   const { publicKey } = useWallet();
 
+  // Sample audit data (replace this with your actual audit data)
+  const auditData = [
+    {
+      date: '2023-09-30',
+      complianceScore: 95,
+      documents: '5 documents submitted',
+      status: 'Done'
+    },
+    {
+      date: '2023-09-25',
+      complianceScore: 85,
+      documents: '5 documents submitted',
+      status: 'Done'
+    },
+    {
+      date: '2023-10-1',
+      complianceScore: 92,
+      documents: '5 documents submitted',
+      status: 'Done'
+    },
+  ];
+  const contentStyle = {
+    marginTop: '70px',
+    marginLeft: '50px',
+     padding: '0 10%'
+  };
+
+  useEffect(() => {
+    // Dynamically load the external CSS file
+    const link = document.createElement('link');
+    link.href = 'https://unpkg.com/css.gg@2.0.0/icons/css/clipboard.css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    return () => {
+      // Clean up: Remove the link element when the component is unmounted
+      document.head.removeChild(link);
+    };
+  }, []); // The empty array means this effect runs only once when the component mounts
+
   return (
     <div style={{ padding: '0 0%', textAlign: 'center' }}>
-      <div 
+      <iframe
+        src='https://my.spline.design/animatedhaxcle-d4048ad00db0c59bf783555e6aad2b2c/'
+        frameborder='0'
+        width='100%'
+        height='100%'
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          zIndex: '-1',
+          opacity:'60%'
+        }}
+      ></iframe>
+      <div
         style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -19,14 +71,14 @@ function MyAudit1() {
           padding: '20px 6%', // Increased padding for thickness
           width: '100%',
           boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Shadow under the navbar
-          marginBottom: '20px'
+          marginBottom: '20px',
+          backgroundColor: 'white',
         }}
       >
-        <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
-          Decentraudit
-        </h1>
-        {publicKey && publicKey === '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? 
-          <a style={{
+        <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>Decentraudit</h1>
+        {publicKey && publicKey === '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? (
+          <a
+            style={{
               fontSize: '18px',
               fontWeight: 'bold',
               position: 'absolute',
@@ -34,8 +86,9 @@ function MyAudit1() {
               color: 'transparent',
               background: 'linear-gradient(to right, #9c4dcc, #6a1b9a)',
               backgroundClip: 'text',
-              WebkitBackgroundClip: 'text'
-            }}>
+              WebkitBackgroundClip: 'text',
+            }}
+          >
             Welcome, sparkathance
             <span
               style={{
@@ -47,7 +100,7 @@ function MyAudit1() {
                 borderStyle: 'solid',
                 fontWeight: '600',
                 borderColor: '#b388ff',
-                fontSize: '12px'
+                fontSize: '12px',
               }}
             >
               ✓
@@ -60,15 +113,15 @@ function MyAudit1() {
                 border: '2px solid grey',
                 borderRadius: '6px',
                 color: 'grey',
-                fontSize: '12px'
+                fontSize: '12px',
               }}
             >
               Not Audited
             </span>
           </a>
-         : null}
+        ) : null}
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          {publicKey && publicKey === '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? 
+          {publicKey && publicKey === '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? (
             <Button
               className={styles.auditButtonAnimation}
               style={{
@@ -79,19 +132,19 @@ function MyAudit1() {
                 borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
                 borderWidth: '3px',
                 borderStyle: 'solid',
-                fontWeight: '600'
+                fontWeight: '600',
               }}
             >
               My Audit
             </Button>
-           : null}
-          <div 
+          ) : null}
+          <div
             style={{
               display: 'inline-flex',
               padding: '2px',
               background: 'linear-gradient(to right, #d8b4fe, #b388ff)',
               borderRadius: '52px',
-              boxShadow: '0 0 10px 2px rgba(186, 104, 255, 0.3)'
+              boxShadow: '0 0 10px 2px rgba(186, 104, 255, 0.3)',
             }}
           >
             <WalletMultiButton 
@@ -107,9 +160,38 @@ function MyAudit1() {
           </div>
         </div>
       </div>
-      
-      
 
+      {/* AuditTableList */}
+      <div style={contentStyle}>
+        <div style={{ margin: '20px', backgroundColor: 'transparent', padding: '20px'}}>
+          <h2 style={{ fontSize: '30px', fontWeight: 'bold' }}>Audit Details</h2>
+          <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: '0', marginTop:'40px'  }}>
+            <thead>
+              <tr style={{ fontSize: '20px' }}>
+                <th style={{ textAlign: 'center', padding: '15px' }}>No.</th>
+                <th style={{ textAlign: 'center' }}>Date</th>
+                <th style={{ textAlign: 'center' }}>Compliance Score</th>
+                <th style={{ textAlign: 'center' }}>Documents</th>
+                <th style={{ textAlign: 'center' }}>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {auditData.map((audit, index) => (
+                <tr key={index} style={{ textAlign: 'center', borderBottom: '1px solid #c0c0c0 ' }}>
+                  <td style={{ padding: '20px' }}>{index + 1}</td>
+                  <td>{audit.date}</td>
+                  <td>{audit.complianceScore}</td>
+                  <td style={{display:'flex', justifyContent:'center', padding:'20px'}}>
+                    <span className="gg-clipboard" style={{ marginRight:'10px',marginTop:'3px' }} ></span>
+                    {audit.documents}
+                  </td>
+                  <td>{audit.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

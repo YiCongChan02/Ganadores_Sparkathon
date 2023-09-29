@@ -127,7 +127,7 @@ function MyAudit0() {
       {/* Button to navigate to the submission page */}
       <div style={{ marginTop: '550px' }}>
           <Link href="/submission-page"> {/* Replace with the actual path to your submission page */}
-            <a>
+
               <Button className={styles.auditButtonAnimation}
                 style={{
                   padding: '9px 18px',
@@ -136,17 +136,16 @@ function MyAudit0() {
                   borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
                   borderWidth: '3px',
                   borderStyle: 'solid',
-                  fontWeight: '600',
+                  fontWeight: '700',
                   width:'300px',
                   height:'100px',
-                  fontSize:'20px',
+                  fontSize:'30px',
                   justifyContent:'center',
-                  padding:'30px'
+                  padding:'25px'
                 }}
               >
                 Get Started
               </Button>
-            </a>
           </Link>
         </div>
     </div>

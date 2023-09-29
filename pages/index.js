@@ -72,6 +72,7 @@ function Home() {
           width: '100%',
           height: '100%',
           zIndex: '-1',
+          opacity:'60%'
         }}
       ></iframe>
       <div 
@@ -205,7 +206,7 @@ function Home() {
             <tr
               key={exchange.id}
               style={{
-                borderBottom: '1px solid #ddd',
+                borderBottom: '1px solid #c0c0c0',
               }}
             >
               <td style={{ textAlign: 'left' }}>{index + 1}</td>
