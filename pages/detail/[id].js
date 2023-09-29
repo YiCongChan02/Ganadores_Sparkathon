@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic.js'
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css';
 import { Button } from '@nextui-org/react';
+import 'font-awesome/css/font-awesome.min.css';
 
 function Detail() {
   const { publicKey } = useWallet();
@@ -276,7 +277,21 @@ function Detail() {
 
 
     <div style={{ padding: '0 10%', textAlign: 'left' }}>
-      <h1 style={{ fontSize: '32px', marginTop: '20px' }}>Exchange Detail Page</h1>
+      {/* Content */}
+      <div style={{display:'flex', textAlign:'right', justifyContent: 'space-between'}}>
+        <h1 style={{ fontSize: '32px', fontWeight: '610', textAlign: 'left', marginLeft:'40px' }}>Exchange Detail Page</h1>
+        <div>
+        <Link href="/" >
+        <i class="fa fa-backward" aria-hidden="true" style={{ fontSize: '24px', marginRight: '10px' }}></i>
+                <Button 
+                style={{
+                    fontSize: '24px', fontWeight: '610', marginRight:'20px'
+                }}>
+                    Back
+                </Button>
+        </Link>
+        </div>
+      </div>
 
       <div style={{ display: 'flex', alignItems: 'flex-end', marginTop:'20px', marginLeft:'120px' }}>
         {/* Left side div with logo and name */}

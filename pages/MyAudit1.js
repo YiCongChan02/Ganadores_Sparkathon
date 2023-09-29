@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import styles from '../styles/Home.module.css';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-
+import Link from 'next/link';
+import { Button } from '@nextui-org/react';
 function MyAudit1() {
   const { publicKey } = useWallet();
 
@@ -32,6 +33,7 @@ function MyAudit1() {
     marginLeft: '50px',
      padding: '0 10%'
   };
+  
 
   useEffect(() => {
     // Dynamically load the external CSS file
@@ -164,7 +166,7 @@ function MyAudit1() {
       {/* AuditTableList */}
       <div style={contentStyle}>
         <div style={{ margin: '20px', backgroundColor: 'transparent', padding: '20px'}}>
-          <h2 style={{ fontSize: '30px', fontWeight: 'bold' }}>Audit Details</h2>
+          <h2 style={{ fontSize: '30px', fontWeight: 'bold' }}>My Audit</h2>
           <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: '0', marginTop:'40px'  }}>
             <thead>
               <tr style={{ fontSize: '20px' }}>
@@ -173,6 +175,7 @@ function MyAudit1() {
                 <th style={{ textAlign: 'center' }}>Compliance Score</th>
                 <th style={{ textAlign: 'center' }}>Documents</th>
                 <th style={{ textAlign: 'center' }}>Status</th>
+                <th style={{ textAlign: 'center' }}></th>
               </tr>
             </thead>
             <tbody>
@@ -186,6 +189,28 @@ function MyAudit1() {
                     {audit.documents}
                   </td>
                   <td>{audit.status}</td>
+                  <td>
+                    <Link href="/myauditdetails">
+                      <Button 
+                        style={{
+                        display: 'inline-flex',
+                        height: '40px',
+                        width: '100px',
+                        border: '2px solid #696969 ',
+                        margin: '20px 20px 20px 20px',
+                        color: '#555555  ',
+                        textTransform: 'uppercase',
+                        textDecoration: 'none',
+                        fontSize: '.8em',
+                        letterSpacing: '1.5px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        overflow: 'hidden',
+                        position: 'relative',
+                      }}>View
+                      </Button>
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
