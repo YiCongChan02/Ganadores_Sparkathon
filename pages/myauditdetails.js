@@ -23,8 +23,12 @@ function MyAuditDetails() {
           backgroundColor: 'white',
         }}
       >
-        <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>Decentraudit</h1>
-        {publicKey && publicKey === '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? (
+        <Link href="/">
+          <Button>
+            <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>Decentraudit</h1>
+          </Button>
+        </Link>
+        {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? (
           <a
             style={{
               fontSize: '18px',
@@ -69,7 +73,7 @@ function MyAuditDetails() {
           </a>
         ) : null}
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          {publicKey && publicKey === '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? (
+          {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? (
             <Button
               className={styles.auditButtonAnimation}
               style={{

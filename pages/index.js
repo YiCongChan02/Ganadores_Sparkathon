@@ -7,6 +7,7 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import dynamic from 'next/dynamic.js'
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+import { useRouter } from 'next/router';
 
 // Import the necessary components
 import { Button } from '@nextui-org/react';
@@ -14,13 +15,21 @@ import { Button } from '@nextui-org/react';
 function Home() {
   const { publicKey } = useWallet();
   const { connection } = useConnection();
- 
+  const router = useRouter(); // Define the router variable
+  console.log('Router Object:', router);
   // solutils hooks
   const { getWalletTokenBalance, result, status, error } = useWalletTokenBalance(publicKey, connection);
   
   const [exchangeData, setExchangeData] = useState([]);
   const [page, setPage] = useState(1);
-
+  const handleMyAuditClick = () => {
+    // Check the user's public key and navigate accordingly
+    if (publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p') {
+      router.push('/MyAudit1'); // Navigate to MyAudit1.js
+    } else if (publicKey == '3NkfhjxKvX6eoX1KoxqsQWn6U2UbYFXtk23s7rj2fkyN') {
+      router.push('/MyAudit0'); // Navigate to MyAudit0.js
+    }
+  };
   // Define a function to fetch data from the CoinGecko API for the specified page
   const fetchExchangeData = async (pageNumber) => {
     try {
@@ -44,6 +53,17 @@ function Home() {
   useEffect(() => {
     fetchExchangeData(page);
   }, [page]);
+
+  
+  useEffect(() => {
+    if (publicKey == 'FBMnwtXmQxYKmVvXYKZSYJkpajNJ8NGuVajRQNdXcZeq') {
+      console.log('Redirecting to AuditSite');
+      router.push('/AuditSite');
+    }
+  }, [publicKey, router]);
+  
+
+
 
   const nextPage = () => {
     // Increment the page number to load the next page of data
@@ -91,7 +111,7 @@ function Home() {
         Decentraudit
         </h1>
         {/* {publicKey && publicKey == '53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR' ?  */}
-        {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? 
+        {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ||publicKey && publicKey == '3NkfhjxKvX6eoX1KoxqsQWn6U2UbYFXtk23s7rj2fkyN'? 
         <a style={{
             fontSize: '18px',
             fontWeight: 'bold',
@@ -144,7 +164,7 @@ function Home() {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {/* 53w111JMbsaa4i9tx1HPcJaj9Uak7bjATegjPH241fiR */}
           {/* if publicKey found, display button */}
-          {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ? 
+          {publicKey && publicKey == '4KFvbU9ukKsXKN3q4JBRhTMTv3Nh47zBAGkfSpUXvk2p' ||publicKey && publicKey == '3NkfhjxKvX6eoX1KoxqsQWn6U2UbYFXtk23s7rj2fkyN'? 
           <Button
           className={styles.auditButtonAnimation}
           style={{
@@ -158,6 +178,7 @@ function Home() {
             borderStyle: 'solid',
             fontWeight: '600'
           }}
+          onClick={handleMyAuditClick} // Attach the click event handler
         >
           My Audit
         </Button>
@@ -273,9 +294,6 @@ function Home() {
         {">"}
       </Button>
         <br></br>
-      <Button>
-        <a href='/AuditSite'>Audit Site Temp Path</a>
-      </Button>
     </div>
 
     </div>
