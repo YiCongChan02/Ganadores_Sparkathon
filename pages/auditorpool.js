@@ -5,8 +5,9 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { Button } from '@nextui-org/react'; // Adjust the import path as needed
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import auditorImage from "../styles/auditorpool.png";
 
-function Auditor() {
+function AuditorPool() {
   const auditorContainerStyle = {
     width: '100%',
     height: '100vh',
@@ -40,8 +41,11 @@ function Auditor() {
 
 
   const contentStyle = {
-    marginTop:'50px',
-    marginLeft:'50px'
+    width: '100%',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center', // Center the image horizontally
+    alignItems: 'center', // Center the image vertically
   };
 
   return (
@@ -81,6 +85,25 @@ function Auditor() {
                     }}
                 >
                     Home
+                </Button>
+            </Link>
+            <Link href="/auditorpool"> {/* Replace '/stake' with the actual URL you want to navigate to */}
+                <Button
+                    className={styles.auditButtonAnimation}
+                    style={{
+                    marginRight: '20px',
+                    padding: '9px 18px',
+                    // borderRadius: '50px',
+                    background: 'white',
+                    borderImageSlice: 1,
+                    borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+                    borderWidth: '3px',
+                    borderStyle: 'solid',
+                    fontWeight: '600',
+                    color:'black'
+                    }}
+                >
+                    Prize Pool
                 </Button>
             </Link>
             <Link href="/auditorpool"> {/* Replace '/stake' with the actual URL you want to navigate to */}
@@ -149,12 +172,17 @@ function Auditor() {
         
         {/* Content */}
         <div style={contentStyle}>
-          <div style={{fontSize: '120px',fontWeight: 'bold',marginLeft: '10px',}}>Welcome, </div>
-          <div style={{fontSize: '100px',fontWeight: 'bold',marginLeft: '10px',}}>Auditor. </div>
+        <img
+          src={auditorImage} // Use the imported image
+          alt="Auditor Image"
+          width="auto"
+          height="auto"
+          style={{ maxWidth: '100%', maxHeight: '100%', display:'inline-block' }}
+        />
         </div>
       </div>
     </div>
   );
 }
 
-export default Auditor;
+export default AuditorPool;
