@@ -99,7 +99,7 @@ function AuditorView() {
                     color:'black'
                     }}
                 >
-                    Stake
+                    Project
                 </Button>
             </Link>
 
@@ -149,7 +149,7 @@ function AuditorView() {
             <tbody>
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd'}}>
                   <td style={{padding:'20px'}}>1</td>
-                  <td>Binance</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>20/9/2023</td>
                   <td>23/9/2023</td>
@@ -174,7 +174,7 @@ function AuditorView() {
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
                   <td style={{padding:'20px'}}>2</td>
-                  <td>Coinbase Exchange</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>21/9/2023</td>
                   <td>24/9/2023</td>
@@ -199,7 +199,7 @@ function AuditorView() {
                 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
                   <td style={{padding:'20px'}}>3</td>
-                  <td>Kraken</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>20/9/2023</td>
                   <td>23/9/2023</td>
@@ -224,7 +224,7 @@ function AuditorView() {
 
                 <tr style={{ textAlign: 'center' , borderBottom: '1px solid #ddd'}}>
                   <td style={{padding:'20px'}}>4</td>
-                  <td>KuKoin</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>23/9/2023</td>
                   <td>27/9/2023</td>
@@ -249,7 +249,7 @@ function AuditorView() {
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
                   <td style={{padding:'20px'}}>5</td>
-                  <td>MEXC</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>23/9/2023</td>
                   <td>25/9/2023</td>
@@ -274,7 +274,7 @@ function AuditorView() {
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
                   <td style={{padding:'20px'}}>6</td>
-                  <td>Bybit</td>
+                  <td>*****</td>
                   <td>Verified</td>
                   <td>21/9/2023</td>
                   <td>25/9/2023</td>
@@ -299,7 +299,7 @@ function AuditorView() {
 
                 <tr style={{ textAlign: 'center' , borderBottom: '1px solid #ddd'}}>
                   <td style={{padding:'20px'}}>7</td>
-                  <td>Bitfinex</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>22/9/2023</td>
                   <td>25/9/2023</td>
@@ -324,7 +324,7 @@ function AuditorView() {
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
                   <td style={{padding:'20px'}}>8</td>
-                  <td>Bitstamp</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>23/9/2023</td>
                   <td>28/9/2023</td>
