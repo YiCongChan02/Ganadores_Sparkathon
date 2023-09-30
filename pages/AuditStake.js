@@ -1,12 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import { Button } from '@nextui-org/react'; // Adjust the import path as needed
+import { Button } from '@nextui-org/react';
+// import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useConnection } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+// import {
+//   Connection,
+//   Keypair,
+//   PublicKey,
+//   SystemProgram,
+//   TransactionMessage,
+//   VersionedTransaction,
+// } from "@solana/web3.js";
+import { Transaction, SystemProgram } from '@solana/web3.js';
+
+
 
 function AuditorView() {
+  const { publicKey, signTransaction } = useWallet();
+  const { connection } = useConnection();
+  
+  // const { publicKey, wallet, connected } = useWallet();
+  // const { connection } = useConnection();
+  // const [isSending, setIsSending] = useState(false);
+  // const [txid, setTxid] = useState(null);  
+
+  // const [recipient, setRecipient] = useState("CZxVHe9WZtTZCBucJMWyi1rC5r2kQURfFQmFsEbtG82Z"); // Set your recipient address here
+  // const amountToTransfer = 0.01 * 10 ** 9; // 0.01 SOL in lamports
+
+  
+  const onClickTransfer = async () => {
+    
+    if (!publicKey) return;
+  
+    /** Exercise 5.1: To verify if the PublicKey is valid */
+    const transaction = new Transaction().add(
+      SystemProgram.transfer({
+        fromPubkey: publicKey,
+        toPubkey: "CZxVHe9WZtTZCBucJMWyi1rC5r2kQURfFQmFsEbtG82Z", // Make sure this is a PublicKey object
+        lamports: 0.01 * 10 ** 9,    // Convert SOL to lamports if needed
+      })
+    );
+
+    const { blockhash } = await connection.getRecentBlockhash();
+
+    transaction.recentBlockhash = blockhash;
+
+    transaction.feePayer = publicKey;
+
+    const signedTransaction = await signTransaction(transaction);
+    // const txid = await sendTransaction(signedTransaction);
+    const txid = await connection.sendRawTransaction(signedTransaction.serialize());
+
+
+    console.log("Transaction ID:", txid);
+  };
+
+
   const auditorContainerStyle = {
     width: '100%',
     height: '100vh',
@@ -156,6 +210,7 @@ function AuditorView() {
                   <td>3 days</td>
                   <td>
                     <Button
+                        onClick={onClickTransfer} // Add this line
                         style={{
                         padding: '6px 12px',
                         background: '#DF8C5D', // Set the background color
