@@ -139,15 +139,12 @@ function Home() {
               marginTop:'300px'
           }}>
               <p style={{ fontSize: '48px', fontWeight: '500' }}>
-                  Select your company size.
-              </p>
-              <p style={{ fontSize: '24px', fontWeight: '300', marginTop:'50px' }}>
-                  Based on market capitalization
+              Redefine the trust between investors and exchanges.
               </p>
           </div>
   
           <div style={{ marginTop: '80px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Link href="/submission2" style={{  marginLeft:'350px' }}>
+          <Link href="/AuditSite" style={{  marginLeft:'600px' }}>
             <Button
               className={styles.auditButtonAnimation}
               style={{
@@ -170,20 +167,15 @@ function Home() {
               }}
             >
               <div>
-                Small
+                Auditor
               </div>
-              <div style={{ fontSize: '14px', fontWeight: '300'}}>
-                Trading volume &lt; $10 million/day.
-              </div>
-              <div style={{ fontSize: '14px', fontWeight: '300' }}>
-                Market capitalization &lt; $100 million.
-              </div>
+              
             </Button>
               
           </Link>
   
   
-          <Link href="/submission2" style={{ marginRight:'350px'}}>
+          <Link href="/" style={{ marginRight:'600px'}}>
             <Button
               className={styles.auditButtonAnimation}
               style={{
@@ -206,14 +198,9 @@ function Home() {
               }}
             >
               <div>
-                Large
+                Exchanges
               </div>
-              <div style={{ fontSize: '14px', fontWeight: '300'}}>
-                Trading volume &gt; $100 million/day.
-              </div>
-              <div style={{ fontSize: '14px', fontWeight: '300' }}>
-                Market capitalization &gt; $1 billion.
-              </div>
+              
             </Button>
           </Link>
         </div>

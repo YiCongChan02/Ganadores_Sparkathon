@@ -14,6 +14,7 @@ function submission2() {
   const [isDragging, setIsDragging] = useState(false);
   const [droppedFile, setDroppedFile] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState(0); // Track the number of uploaded files
+  const [showDetails, setShowDetails] = useState(false); // State for showing/hiding details
 
   const handleDragEnter = (e) => {
     e.preventDefault();
@@ -64,11 +65,7 @@ function submission2() {
   const handleSubmission = () => {
     // You can perform any necessary submission logic here
     // For now, we'll just show a success alert
-    const confirmResult = window.confirm('Documents submitted successfully. Click OK to continue.');
-    if (confirmResult) {
-      // Redirect to the index page (you may need to adjust this URL)
-      window.location.href = '/';
-    }
+    setShowDetails(true);
   };
 
   const dragOverStyles = {
@@ -305,6 +302,70 @@ function submission2() {
         >
           Submit
         </Button>
+
+        {/* Hidden details div */}
+        {showDetails && (
+  <div
+    style={{
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '300px',
+      height: '250px',
+      backgroundColor: 'white',
+      borderRadius: '5px',
+      boxShadow: '0px 4px 10px rgba(0, 0, 0, 1.0)',
+      borderTopLeftRadius: '25px',
+      borderBottomLeftRadius: '25px',
+      borderTopRightRadius: '25px',
+      borderBottomRightRadius: '25px',
+      border: '2px solid #E6D8FF',
+      padding: '20px',
+      textAlign: 'left',
+      zIndex: '9999',
+    }}
+  >
+    <div style={{ marginBottom: '10px' }}>
+      <p style={{ fontWeight: '600' }}>Total submission:{uploadedFiles}</p>
+      <hr style={{ borderColor: '#ebebeb', margin: '5px 0' }} />
+      
+    </div>
+    <div style={{ marginBottom: '10px' }}>
+      <p style={{ fontWeight: '600' }}>Total MB of the file:</p>
+      <hr style={{ borderColor: '#ebebeb', margin: '5px 0' }} />
+      {/* Calculate total MB here */}
+    </div>
+    <div style={{ marginBottom: '10px' }}>
+      <p style={{ fontWeight: '600' }}>Gas fee:</p>
+      <hr style={{ borderColor: '#ebebeb', margin: '5px 0' }} />
+      {/* Calculate gas fee here */}
+    </div>
+    <div>
+    <p style={{ fontWeight: '300px', color:'grey', fontsize:'12px' }}>Note: The gas fee is based on the size of documents submitted</p>
+    </div>
+    <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
+      <Link href="/">
+        <Button
+          style={{
+            background: 'transparent',
+            width: '70px',
+            borderRadius: '5px',
+            border: '2px solid #E6D8FF',
+            boxShadow: '0px 4px 10px rgba(230, 216, 255, 10.0)',
+            borderTopLeftRadius: '25px',
+            borderBottomLeftRadius: '25px',
+            borderTopRightRadius: '25px',
+            borderBottomRightRadius: '25px',
+          }}
+        >
+          Done
+        </Button>
+      </Link>
+    </div>
+  </div>
+)}
+
       </div>
     </div>
   );

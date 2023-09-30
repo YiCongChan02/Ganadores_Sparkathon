@@ -23,7 +23,7 @@ import { Transaction, SystemProgram } from '@solana/web3.js';
 function AuditorView() {
   const { publicKey, signTransaction } = useWallet();
   const { connection } = useConnection();
-  
+  const [showDetails, setShowDetails] = useState(false); // State for showing/hiding details
   // const { publicKey, wallet, connected } = useWallet();
   // const { connection } = useConnection();
   // const [isSending, setIsSending] = useState(false);
@@ -32,9 +32,13 @@ function AuditorView() {
   // const [recipient, setRecipient] = useState("CZxVHe9WZtTZCBucJMWyi1rC5r2kQURfFQmFsEbtG82Z"); // Set your recipient address here
   // const amountToTransfer = 0.01 * 10 ** 9; // 0.01 SOL in lamports
 
-  
+  const handleSubmission = () => {
+    // You can perform any necessary submission logic here
+    // For now, we'll just show a success alert
+    setShowDetails(true);
+  };
   const onClickTransfer = async () => {
-    
+    setShowDetails(false);
     if (!publicKey) return;
   
     /** Exercise 5.1: To verify if the PublicKey is valid */
@@ -58,6 +62,8 @@ function AuditorView() {
 
 
     console.log("Transaction ID:", txid);
+
+
   };
 
 
@@ -229,7 +235,7 @@ function AuditorView() {
                   <td>3 days</td>
                   <td>
                     <Button
-                        onClick={onClickTransfer} // Add this line
+                        onClick={handleSubmission} // Add this line
                         style={{
                         padding: '6px 12px',
                         background: '#DF8C5D', // Set the background color
@@ -424,6 +430,64 @@ function AuditorView() {
           </table>
         </div>
       </div>
+      {/* Hidden details div */}
+      {showDetails && (
+  <div
+    style={{
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '300px',
+      height: '250px',
+      backgroundColor: 'white',
+      borderRadius: '5px',
+      boxShadow: '0px 4px 10px rgba(0, 0, 0, 1.0)',
+      borderTopLeftRadius: '25px',
+      borderBottomLeftRadius: '25px',
+      borderTopRightRadius: '25px',
+      borderBottomRightRadius: '25px',
+      border: '2px solid #E6D8FF',
+      padding: '20px',
+      textAlign: 'left',
+      zIndex: '9999',
+    }}
+  >
+    <div style={{ marginBottom: '10px' }}>
+      <p style={{ fontWeight: '600' }}>Stake Amount: 0.10SOL</p>
+      <hr style={{ borderColor: '#ebebeb', margin: '5px 0' }} />
+      
+    </div>
+    <div style={{ marginBottom: '10px' }}>
+      <p style={{ fontWeight: '600' }}>Gas Fee: 0.01SOL</p>
+      <hr style={{ borderColor: '#ebebeb', margin: '5px 0' }} />
+      {/* Calculate total MB here */}
+    </div>
+    <div>
+    <p style={{ fontWeight: '300px', color:'grey', fontsize:'12px' }}>Note: The Staking is irreversible</p>
+    </div>
+    <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
+      
+        <Button
+          onClick={onClickTransfer} 
+          style={{
+            background: 'transparent',
+            width: '70px',
+            borderRadius: '5px',
+            border: '2px solid #E6D8FF',
+            boxShadow: '0px 4px 10px rgba(230, 216, 255, 10.0)',
+            borderTopLeftRadius: '25px',
+            borderBottomLeftRadius: '25px',
+            borderTopRightRadius: '25px',
+            borderBottomRightRadius: '25px',
+          }}
+        >
+          Confirm
+        </Button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
