@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 
 // Import the necessary components
 import { Button } from '@nextui-org/react';
+import 'font-awesome/css/font-awesome.min.css';
 
 function Home() {
   const { publicKey } = useWallet();
@@ -246,6 +247,17 @@ function Home() {
                       }}
                     />
                     <span style={{ fontSize: '16px' }}>{exchange.name}</span>
+                    {index === 1 && ( // Check if it's row 2
+                    <i
+                      className="fa fa-check-circle-o"
+                      style={{
+                        fontSize: '24px',
+                        marginLeft: '5px', // Spacing between the exchange name and icon
+                        color: 'green', // Color of the checkmark
+                        marginLeft:'10px'
+                      }}
+                    />
+                  )}
                 </Link>
               </td>
               <td style={{ textAlign: 'left' }}>{exchange.trust_score}</td>

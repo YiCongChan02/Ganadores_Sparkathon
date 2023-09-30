@@ -99,7 +99,7 @@ function Auditor() {
                     color:'black'
                     }}
                 >
-                    Stake
+                    Project
                 </Button>
             </Link>
 

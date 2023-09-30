@@ -99,7 +99,7 @@ function AuditorView() {
                     color:'black'
                     }}
                 >
-                    Stake
+                    Project
                 </Button>
             </Link>
 
@@ -137,7 +137,7 @@ function AuditorView() {
           >
             <thead>
               <tr style={{fontSize:'20px'}}>
-                <th style={{ textAlign: 'center' , padding:'15px'}}>No.</th>
+                <th style={{ textAlign: 'center' , padding:'15px'}}>project id.</th>
                 <th style={{ textAlign: 'center' }}>Exchange</th>
                 <th style={{ textAlign: 'center' }}>Status</th>
                 <th style={{ textAlign: 'center' }}>Date</th>
@@ -148,8 +148,8 @@ function AuditorView() {
             </thead>
             <tbody>
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd'}}>
-                  <td style={{padding:'20px'}}>1</td>
-                  <td>Binance</td>
+                  <td style={{padding:'20px'}}>ax63ho19pe21bt1</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>20/9/2023</td>
                   <td>23/9/2023</td>
@@ -173,8 +173,8 @@ function AuditorView() {
                 </tr>
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
-                  <td style={{padding:'20px'}}>2</td>
-                  <td>Coinbase Exchange</td>
+                  <td style={{padding:'20px'}}>71ja9dt2jd8ushw</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>21/9/2023</td>
                   <td>24/9/2023</td>
@@ -198,8 +198,8 @@ function AuditorView() {
                 </tr>
                 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
-                  <td style={{padding:'20px'}}>3</td>
-                  <td>Kraken</td>
+                  <td style={{padding:'20px'}}>i3n5op3qa7xutn2</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>20/9/2023</td>
                   <td>23/9/2023</td>
@@ -223,8 +223,8 @@ function AuditorView() {
                 </tr>
 
                 <tr style={{ textAlign: 'center' , borderBottom: '1px solid #ddd'}}>
-                  <td style={{padding:'20px'}}>4</td>
-                  <td>KuKoin</td>
+                  <td style={{padding:'20px'}}>y7je2m18ik2l5hs</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>23/9/2023</td>
                   <td>27/9/2023</td>
@@ -248,8 +248,8 @@ function AuditorView() {
                 </tr>
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
-                  <td style={{padding:'20px'}}>5</td>
-                  <td>MEXC</td>
+                  <td style={{padding:'20px'}}>us718shal97w53b</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>23/9/2023</td>
                   <td>25/9/2023</td>
@@ -273,8 +273,8 @@ function AuditorView() {
                 </tr>
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
-                  <td style={{padding:'20px'}}>6</td>
-                  <td>Bybit</td>
+                  <td style={{padding:'20px'}}>y79akei1hn3mex5</td>
+                  <td>*****</td>
                   <td>Verified</td>
                   <td>21/9/2023</td>
                   <td>25/9/2023</td>
@@ -298,8 +298,8 @@ function AuditorView() {
                 </tr>
 
                 <tr style={{ textAlign: 'center' , borderBottom: '1px solid #ddd'}}>
-                  <td style={{padding:'20px'}}>7</td>
-                  <td>Bitfinex</td>
+                  <td style={{padding:'20px'}}>92x7qn34m1kq9al</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>22/9/2023</td>
                   <td>25/9/2023</td>
@@ -323,8 +323,8 @@ function AuditorView() {
                 </tr>
 
                 <tr style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
-                  <td style={{padding:'20px'}}>8</td>
-                  <td>Bitstamp</td>
+                  <td style={{padding:'20px'}}>8xuwmail1kw9aiq</td>
+                  <td>*****</td>
                   <td>Univerified</td>
                   <td>23/9/2023</td>
                   <td>28/9/2023</td>
