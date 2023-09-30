@@ -5,7 +5,7 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { Button } from '@nextui-org/react'; // Adjust the import path as needed
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import auditorImage from "../styles/auditorpool.png";
+// import auditorImage from "../styles/auditorpool.png";
 
 function AuditorPool() {
   const auditorContainerStyle = {
@@ -44,9 +44,17 @@ function AuditorPool() {
     width: '100%',
     height: '100vh',
     display: 'flex',
-    justifyContent: 'center', // Center the image horizontally
-    alignItems: 'center', // Center the image vertically
-  };
+    justifyContent: 'center', // Center the content horizontally
+    alignItems: 'center', // Center the content vertically
+    backgroundImage: `url('/bonus.png')`, // Reference the image from the public folder
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center 20%',
+    backgroundSize: '80% auto',
+    // backgroundColor: 'light yellow'
+};
+
+  
 
   return (
     <div style={auditorContainerStyle}>
@@ -106,7 +114,6 @@ function AuditorPool() {
                     Prize Pool
                 </Button>
             </Link>
-<<<<<<< Updated upstream
             <Link href="/auditorpool"> {/* Replace '/stake' with the actual URL you want to navigate to */}
                 <Button
                     className={styles.auditButtonAnimation}
@@ -126,8 +133,6 @@ function AuditorPool() {
                     Prize Pool
                 </Button>
             </Link>
-=======
->>>>>>> Stashed changes
             <Link href="/AuditStake"> {/* Replace '/stake' with the actual URL you want to navigate to */}
                 <Button
                     className={styles.auditButtonAnimation}
@@ -175,13 +180,7 @@ function AuditorPool() {
         
         {/* Content */}
         <div style={contentStyle}>
-        <img
-          src={auditorImage} // Use the imported image
-          alt="Auditor Image"
-          width="auto"
-          height="auto"
-          style={{ maxWidth: '100%', maxHeight: '100%', display:'inline-block' }}
-        />
+
         </div>
       </div>
     </div>

@@ -9,11 +9,14 @@ import Link from 'next/link';
 import styles from '../../styles/Home.module.css';
 import { Button } from '@nextui-org/react';
 import 'font-awesome/css/font-awesome.min.css';
+import Image from 'next/image';
+// import { useState } from 'react';
 
 function Detail() {
   const { publicKey } = useWallet();
   const { connection } = useConnection();
  
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // solutils hooks
   const { getWalletTokenBalance, result, status, error } = useWalletTokenBalance(publicKey, connection);
   
@@ -325,9 +328,28 @@ function Detail() {
         </div>
 
         <div style={{ marginLeft: '150px' }}>
-          <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Website: </p>
-          <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}><a href={exchangeDetail.url} target="_blank" rel="noopener noreferrer">{exchangeDetail.url}</a></p>
-        </div>
+  {exchangeDetail.name === "Binance" && (
+    <div 
+    onClick={() => setIsModalOpen(true)} 
+    style={{ 
+      cursor: 'pointer', 
+            marginLeft: '10px', 
+            display: 'inline-block', // Ensure the container fits the content
+            borderImageSlice: 1,
+            borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+            borderWidth: '3px',
+            borderStyle: 'solid',
+            boxShadow: '0 0 10px 2px rgba(129, 81, 168, 0.3)', // Subtle glow effect
+            borderRadius: '8px', // Rounded corners
+            overflow: 'hidden' // To ensure the border covers the entire image
+    }}
+  >
+    <Image src="/BADGE.gif" alt="Badge GIF" width={150} height={(28/32)*150} /> {/* Increased size */}
+  </div>
+  )}
+  <p style={{ marginTop: '0px', color: '#7d7d7d', fontSize: '18px' }}>Website: </p>
+  <p style={{ color: 'black', fontSize: '20px', marginBottom: '15px' }}><a href={exchangeDetail.url} target="_blank" rel="noopener noreferrer">{exchangeDetail.url}</a></p>
+</div>
       </div>
 
       {/* White line */}
@@ -416,6 +438,28 @@ function Detail() {
 
       </div>
     </div>
+    {isModalOpen && (
+  <div 
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000
+    }}
+    onClick={() => setIsModalOpen(false)}
+  >
+    <div onClick={(e) => e.stopPropagation()}>
+      <Image src="/BADGE.gif" alt="Badge GIF" width={500} height={500} /> {/* Adjust the size as needed */}
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

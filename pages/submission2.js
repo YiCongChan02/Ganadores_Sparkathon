@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@nextui-org/react';
+import { useConnection } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWalletTokenBalance } from '@lndgalante/solutils';
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -8,13 +9,16 @@ import dynamic from 'next/dynamic.js';
 import Link from 'next/link';
 import 'animate.css';
 import CircularProgress from './CircularProgress'; // Import the CircularProgress component
+import { Transaction, SystemProgram } from '@solana/web3.js';
 
 function submission2() {
-  const { publicKey } = useWallet();
+  
+  const { publicKey, signTransaction } = useWallet();
   const [isDragging, setIsDragging] = useState(false);
   const [droppedFile, setDroppedFile] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState(0); // Track the number of uploaded files
   const [showDetails, setShowDetails] = useState(false); // State for showing/hiding details
+  const { connection } = useConnection();
 
   const handleDragEnter = (e) => {
     e.preventDefault();
@@ -85,6 +89,35 @@ function submission2() {
       document.head.removeChild(link);
     };
   }, []);
+
+  const onClickTransfer = async () => {
+    setShowDetails(false);
+    if (!publicKey) return;
+  
+    /** Exercise 5.1: To verify if the PublicKey is valid */
+    const transaction = new Transaction().add(
+      SystemProgram.transfer({
+        fromPubkey: publicKey,
+        toPubkey: "CZxVHe9WZtTZCBucJMWyi1rC5r2kQURfFQmFsEbtG82Z", // Make sure this is a PublicKey object
+        lamports: 0.01 * 10 ** 9,    // Convert SOL to lamports if needed
+      })
+    );
+
+    const { blockhash } = await connection.getRecentBlockhash();
+
+    transaction.recentBlockhash = blockhash;
+
+    transaction.feePayer = publicKey;
+
+    const signedTransaction = await signTransaction(transaction);
+    // const txid = await sendTransaction(signedTransaction);
+    const txid = await connection.sendRawTransaction(signedTransaction.serialize());
+
+
+    console.log("Transaction ID:", txid);
+
+
+  };
 
   return (
     <div style={{ padding: '0 0%', textAlign: 'center' }}>
@@ -332,12 +365,12 @@ function submission2() {
       
     </div>
     <div style={{ marginBottom: '10px' }}>
-      <p style={{ fontWeight: '600' }}>Total MB of the file:</p>
+      <p style={{ fontWeight: '600' }}>Total file size: 1.12GB</p>
       <hr style={{ borderColor: '#ebebeb', margin: '5px 0' }} />
       {/* Calculate total MB here */}
     </div>
     <div style={{ marginBottom: '10px' }}>
-      <p style={{ fontWeight: '600' }}>Gas fee:</p>
+      <p style={{ fontWeight: '600' }}>Gas fee: 0.01SOL</p>
       <hr style={{ borderColor: '#ebebeb', margin: '5px 0' }} />
       {/* Calculate gas fee here */}
     </div>
@@ -345,8 +378,8 @@ function submission2() {
     <p style={{ fontWeight: '300px', color:'grey', fontsize:'12px' }}>Note: The gas fee is based on the size of documents submitted</p>
     </div>
     <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
-      <Link href="/">
         <Button
+          onClick={onClickTransfer} 
           style={{
             background: 'transparent',
             width: '70px',
@@ -359,9 +392,9 @@ function submission2() {
             borderBottomRightRadius: '25px',
           }}
         >
-          Done
+          Confirm
         </Button>
-      </Link>
+
     </div>
   </div>
 )}
