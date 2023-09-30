@@ -106,6 +106,7 @@ function AuditorPool() {
                     Prize Pool
                 </Button>
             </Link>
+<<<<<<< Updated upstream
             <Link href="/auditorpool"> {/* Replace '/stake' with the actual URL you want to navigate to */}
                 <Button
                     className={styles.auditButtonAnimation}
@@ -125,6 +126,8 @@ function AuditorPool() {
                     Prize Pool
                 </Button>
             </Link>
+=======
+>>>>>>> Stashed changes
             <Link href="/AuditStake"> {/* Replace '/stake' with the actual URL you want to navigate to */}
                 <Button
                     className={styles.auditButtonAnimation}
