@@ -137,6 +137,25 @@ function AuditorView() {
                     Home
                 </Button>
             </Link>
+            <Link href="/auditorpool"> {/* Replace '/stake' with the actual URL you want to navigate to */}
+                <Button
+                    className={styles.auditButtonAnimation}
+                    style={{
+                    marginRight: '20px',
+                    padding: '9px 18px',
+                    // borderRadius: '50px',
+                    background: 'white',
+                    borderImageSlice: 1,
+                    borderImageSource: 'linear-gradient(45deg, #d8b4fe, #ffffff, #b388ff)',
+                    borderWidth: '3px',
+                    borderStyle: 'solid',
+                    fontWeight: '600',
+                    color:'black'
+                    }}
+                >
+                    Prize Pool
+                </Button>
+            </Link>
             <Link href="/AuditStake"> {/* Replace '/stake' with the actual URL you want to navigate to */}
                 <Button
                     className={styles.auditButtonAnimation}
